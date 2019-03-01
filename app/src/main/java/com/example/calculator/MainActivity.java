@@ -1,5 +1,6 @@
 package com.example.calculator;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -12,6 +13,30 @@ public class MainActivity extends AppCompatActivity {
     private EditText result;
     private EditText newNumber;
     private TextView displayOperation;
+    private String resultOut = "";
+    private String operatoinOut = "";
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        System.out.println("blah" + result.getText().toString());
+        System.out.println("blah" + pendingOperation);
+        outState.putString(resultOut, result.getText().toString());
+        outState.putString(operatoinOut, pendingOperation);
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState != null) {
+
+            result.setText( savedInstanceState.getString(resultOut));
+            pendingOperation=savedInstanceState.getString(operatoinOut);
+            System.out.println("blah back" + resultOut);
+            System.out.println("blah blah" + operatoinOut);
+        }
+    }
 
     // Variables to hold the operands and type of calculations
     private Double operand1 = null;
