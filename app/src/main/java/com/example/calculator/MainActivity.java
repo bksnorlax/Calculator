@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 operand1 = 0.0;
                 operand2 = 0.0;
-                pendingOperation = "";
+                pendingOperation = "=";
                 result.setText("");
                 displayOperation.setText("");
                 newNumber.setText("");
