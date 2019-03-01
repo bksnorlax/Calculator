@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonMinus = (Button) findViewById(R.id.buttonMinus);
         Button buttonPlus = (Button) findViewById(R.id.buttonPlus);
 
-
+//   Built Listener for "Clear" Button
         View.OnClickListener ClearListener = new View.OnClickListener() {
             public void onClick(View view) {
                 operand1 = 0.0;
@@ -88,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
 
         };
         buttonClear.setOnClickListener(ClearListener);
+
+ // Listener for Number Buttons.
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         button9.setOnClickListener(listener);
         buttonDot.setOnClickListener(listener);
 
-
+//Listener for Operations
         View.OnClickListener opListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -138,10 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 pendingOperation = operation;
             }
             switch (pendingOperation) {
-                case "Clear":
-                    pendingOperation = "";
-                    operand1 = 0.0;
-                    operand2 = 0.0;
+
 
                 case "=":
                     ;
