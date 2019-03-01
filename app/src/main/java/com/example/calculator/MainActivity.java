@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         };
         buttonClear.setOnClickListener(ClearListener);
 
- // Listener for Number Buttons.
+        // Listener for Number Buttons.
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
