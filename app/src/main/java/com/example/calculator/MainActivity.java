@@ -3,10 +3,12 @@ package com.example.calculator;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.net.sip.SipSession;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState != null) {
 
-            result.setText( savedInstanceState.getString(resultOut));
-            pendingOperation=savedInstanceState.getString(operatoinOut);
+            result.setText(savedInstanceState.getString(resultOut));
+            pendingOperation = savedInstanceState.getString(operatoinOut);
             System.out.println("blah back" + resultOut);
             System.out.println("blah blah" + operatoinOut);
         }
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         Button button8 = (Button) findViewById(R.id.button8);
         Button button9 = (Button) findViewById(R.id.button9);
         Button buttonDot = (Button) findViewById(R.id.buttonDot);
+        Button buttonClear = (Button) findViewById(R.id.buttonClear);
 
         Button buttonEquals = (Button) findViewById(R.id.buttonEquals);
         Button buttonDivide = (Button) findViewById(R.id.buttonDivide);
@@ -71,6 +74,20 @@ public class MainActivity extends AppCompatActivity {
         Button buttonMinus = (Button) findViewById(R.id.buttonMinus);
         Button buttonPlus = (Button) findViewById(R.id.buttonPlus);
 
+
+        View.OnClickListener ClearListener = new View.OnClickListener() {
+            public void onClick(View view) {
+                operand1 = 0.0;
+                operand2 = 0.0;
+                pendingOperation = "";
+                result.setText("");
+                displayOperation.setText("");
+                newNumber.setText("");
+            }
+
+
+        };
+        buttonClear.setOnClickListener(ClearListener);
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
         button8.setOnClickListener(listener);
         button9.setOnClickListener(listener);
         buttonDot.setOnClickListener(listener);
+
 
         View.OnClickListener opListener = new View.OnClickListener() {
             @Override
@@ -109,16 +127,22 @@ public class MainActivity extends AppCompatActivity {
         buttonMinus.setOnClickListener(opListener);
         buttonPlus.setOnClickListener(opListener);
     }
+
     private void performOperation(String value, String operation) {
         if (null == operand1) {
             operand1 = Double.valueOf(value);
         } else {
-                operand2 = Double.valueOf(value);
+            operand2 = Double.valueOf(value);
 
-                if (pendingOperation.equals("=")) {
+            if (pendingOperation.equals("=")) {
                 pendingOperation = operation;
-                }
+            }
             switch (pendingOperation) {
+                case "Clear":
+                    pendingOperation = "";
+                    operand1 = 0.0;
+                    operand2 = 0.0;
+
                 case "=":
                     ;
                     operand1 = operand2;
@@ -132,14 +156,14 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case "*":
-                operand1 *= operand2;
-                break;
+                    operand1 *= operand2;
+                    break;
                 case "-":
-                operand1 -= operand2;
-                break;
+                    operand1 -= operand2;
+                    break;
                 case "+":
-                operand1 += operand2;
-                break;
+                    operand1 += operand2;
+                    break;
 
             }
         }
