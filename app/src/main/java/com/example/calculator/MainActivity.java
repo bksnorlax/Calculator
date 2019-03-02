@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private Double operand1 = null;
     private String pendingOperation = "=";
 // Below is also for fixing Landscape
-    
+
     private static final String STATE_PENDING_OPERATION = "PendingOperation";
     private static final String STATE_OPERAND1 = "Operand1";
 
