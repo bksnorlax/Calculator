@@ -16,7 +16,8 @@ public class MainActivity extends AppCompatActivity {
     // Variables to hold the operands and type of calculations
     private Double operand1 = null;
     private String pendingOperation = "=";
-
+// Below is also for fixing Landscape
+    
     private static final String STATE_PENDING_OPERATION = "PendingOperation";
     private static final String STATE_OPERAND1 = "Operand1";
 
@@ -98,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onSaveInstanceState(outState);
     }
+//    Solution To Landscape is below, abvoe private void
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
